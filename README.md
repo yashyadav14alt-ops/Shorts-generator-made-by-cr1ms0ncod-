@@ -1,30 +1,86 @@
 # ShortsForge 🤖🎬
 
-AI-powered short video generation platform. Create viral short-form videos with AI.
+AI-powered Shorts Script Generator for content creators.
 
-## Features
-- 🤖 AI Script Generation
-- 🎙️ Text-to-Speech
-- 🎨 AI Image Generation
-- 🎬 Automatic Video Compilation
-- 📱 Optimized for Shorts/Reels/TikTok
+Generate viral-ready scripts for:
 
-## Tech Stack
-- Frontend: React + Vite + TailwindCSS
-- Backend: Node.js + Express
-- Database: MongoDB
-- AI: OpenAI, ElevenLabs, Replicate
-- Video Processing: FFmpeg
+📺 YouTube Shorts
 
-## Quick Start
+📱 Instagram Reels
 
-```bash
-# Install dependencies
-npm run install-all
+🎵 TikTok
 
-# Setup environment
-cp .env.example .env
-# Edit .env with your API keys
+using Google's Gemini AI.
 
-# Run development
-npm run dev
+---
+
+## ✨ Features
+
+✅ AI Script Generation
+
+✅ Platform-Specific Content
+
+✅ Multiple Content Tones
+
+✅ Hook Generation
+
+✅ CTA Generation
+
+✅ Smart Hashtag Suggestions
+
+✅ Hinglish Script Support
+
+---
+
+## 🛠 Tech Stack
+
+🐍 Python
+
+🧠 Google Gemini AI
+
+📄 Prompt Engineering
+
+---
+
+## 🚀 How It Works
+
+User Input
+↓
+Gemini AI
+↓
+Script Generation
+↓
+Viral Content Output
+
+---
+
+## 📋 Example Inputs
+
+Platform:
+YouTube Shorts
+
+Topic:
+How to stay productive
+
+Tone:
+Motivational
+
+---
+
+## 🎯 Future Roadmap
+
+🔊 Text-to-Speech
+
+🖼 AI Image Generation
+
+🎥 Automatic Video Compilation
+
+📊 Content Analytics
+
+🌍 Multi-language Support
+
+---
+
+## 👨‍💻 Author
+
+Made by cr1ms0ncode 🚀
