@@ -1,17 +1,26 @@
 # ShortsForge 🎬
 # Made by cr1ms0ncode 🚀
 #
-# Purpose:
+# Project Purpose:
 # Generate viral short-form video scripts using Gemini AI.
-# Supports YouTube Shorts, Instagram Reels and TikTok.
+#
+# Features:
+# - Platform specific scripts
+# - Multiple tones
+# - Hook generation
+# - CTA generation
+# - Hashtag generation
+# - Save generated script to file
+
 
 from google import genai
 
 
-# -------------------------------
-# Function 1: Show project banner
-# -------------------------------
+# --------------------------------
+# Function 1: Display Banner
+# --------------------------------
 def banner():
+
     print("=" * 50)
     print("   ShortsForge 🎬 - AI Script Generator")
     print("   Made by cr1ms0ncode 🚀")
@@ -19,10 +28,15 @@ def banner():
     print()
 
 
-# ------------------------------------
-# Function 2: Generate script using AI
-# ------------------------------------
-def generate_script(client, platform, topic, tone):
+# --------------------------------
+# Function 2: Generate AI Script
+# --------------------------------
+def generate_script(
+    client,
+    platform,
+    topic,
+    tone
+):
 
     prompt = f"""
 Create a viral {platform} script about '{topic}'.
@@ -52,35 +66,54 @@ Keep it under 60 seconds.
     return response.text
 
 
-# -----------------------
-# Main Program Starts Here
-# -----------------------
+# --------------------------------
+# Function 3: Save Script to File
+# --------------------------------
+def save_script(script):
 
-# Display project title
+    with open(
+        "generated_script.txt",
+        "w",
+        encoding="utf-8"
+    ) as file:
+
+        file.write(script)
+
+    print("✅ Script saved successfully!")
+    print("📄 File Name: generated_script.txt")
+
+
+# --------------------------------
+# Main Program Starts Here
+# --------------------------------
+
+# Show project banner
 banner()
 
 print("SETUP: aistudio.google.com se API key lo")
 print()
 
-# Take Gemini API key from user
+# User enters Gemini API key
 api_key = input("Enter your Gemini API Key: ")
 
-# Create Gemini client
+# Create Gemini Client
 client = genai.Client(api_key=api_key)
 
 print()
 print("Platforms: YouTube Shorts, Instagram Reels, TikTok")
 
-# User inputs
+# User Inputs
 platform = input("Platform choose karo: ")
 topic = input("Video topic kya hai: ")
-tone = input("Tone (funny/motivational/educational): ")
+tone = input(
+    "Tone (funny/motivational/educational): "
+)
 
 print()
 print("Generating viral script... 🎬")
 print()
 
-# Generate script
+# Generate Script
 script = generate_script(
     client,
     platform,
@@ -88,7 +121,10 @@ script = generate_script(
     tone
 )
 
-# Display result
+# Display Result
 print("=" * 50)
 print(script)
 print("=" * 50)
+
+# Save Script
+save_script(script)
