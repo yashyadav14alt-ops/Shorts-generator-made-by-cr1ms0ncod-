@@ -1,86 +1,31 @@
-# ShortsForge 🤖🎬
+# ShortsForge
 
-AI-powered Shorts Script Generator for content creators.
+A small Python CLI that uses Google's Gemini API to draft short-form video scripts in Hinglish for YouTube Shorts, Instagram Reels, or TikTok.
 
-Generate viral-ready scripts for:
+## What it does
 
-📺 YouTube Shorts
+- Prompts for a platform, topic, and tone (funny, motivational, or educational).
+- Generates a draft with a hook, main content, call to action, and hashtag suggestions.
+- Saves the result as **generated_script.txt** in the current working directory. A new run overwrites that file.
 
-📱 Instagram Reels
+Generated content is a draft. It is not checked for factual accuracy and is not guaranteed to perform well or go viral. Review it before publishing.
 
-🎵 TikTok
+## Requirements
 
-using Google's Gemini AI.
+- Python
+- A Gemini API key from [Google AI Studio](https://aistudio.google.com/)
 
----
+## Setup
 
-## ✨ Features
+From the repository directory:
 
-✅ AI Script Generation
+~~~bash
+python -m pip install -r requirements.txt
+python shorts_forge.py
+~~~
 
-✅ Platform-Specific Content
+On Windows, use **python** in PowerShell or Command Prompt. When prompted, enter the API key; terminal input is hidden while typing. The key is used to create the Gemini client and is not written to a file by this program.
 
-✅ Multiple Content Tones
+## Limitations
 
-✅ Hook Generation
-
-✅ CTA Generation
-
-✅ Smart Hashtag Suggestions
-
-✅ Hinglish Script Support
-
----
-
-## 🛠 Tech Stack
-
-🐍 Python
-
-🧠 Google Gemini AI
-
-📄 Prompt Engineering
-
----
-
-## 🚀 How It Works
-
-User Input
-↓
-Gemini AI
-↓
-Script Generation
-↓
-Viral Content Output
-
----
-
-## 📋 Example Inputs
-
-Platform:
-YouTube Shorts
-
-Topic:
-How to stay productive
-
-Tone:
-Motivational
-
----
-
-## 🎯 Future Roadmap
-
-🔊 Text-to-Speech
-
-🖼 AI Image Generation
-
-🎥 Automatic Video Compilation
-
-📊 Content Analytics
-
-🌍 Multi-language Support
-
----
-
-## 👨‍💻 Author
-
-Made by cr1ms0ncode 🚀
+This is a local CLI prototype. It does not publish videos, verify generated claims, or preserve previous output files. Keep API keys private and follow Google's API terms and data handling guidance.
