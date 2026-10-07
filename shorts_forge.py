@@ -1,26 +1,18 @@
 # ShortsForge 🎬
 # Made by cr1ms0ncode 🚀
 #
-# Project Purpose:
-# Generate viral short-form video scripts using Gemini AI.
-#
-# Features:
-# - Platform specific scripts
-# - Multiple tones
-# - Hook generation
-# - CTA generation
-# - Hashtag generation
-# - Save generated script to file
+# Generate short-form video script drafts with Gemini AI.
 
+from getpass import getpass
 
 from google import genai
 
 
-# --------------------------------
-# Function 1: Display Banner
-# --------------------------------
-def banner():
+PLATFORMS = ("YouTube Shorts", "Instagram Reels", "TikTok")
+TONES = ("funny", "motivational", "educational")
 
+
+def banner():
     print("=" * 50)
     print("   ShortsForge 🎬 - AI Script Generator")
     print("   Made by cr1ms0ncode 🚀")
@@ -28,103 +20,80 @@ def banner():
     print()
 
 
-# --------------------------------
-# Function 2: Generate AI Script
-# --------------------------------
-def generate_script(
-    client,
-    platform,
-    topic,
-    tone
-):
-
+def generate_script(client, platform, topic, tone):
     prompt = f"""
-Create a viral {platform} script about '{topic}'.
+Create an engaging draft for a {platform} video about '{topic}'.
 
 Tone: {tone}
-
 Language: Hinglish (Hindi + English mix)
 
 Format:
-
-HOOK (first 3 seconds - attention grabbing)
-
+HOOK (first 3 seconds)
 MAIN CONTENT (key points)
-
 CTA (call to action)
-
 HASHTAGS (10 relevant hashtags)
 
-Keep it under 60 seconds.
+Aim for a script under 60 seconds. This is a draft and is not guaranteed to go viral.
 """
 
     response = client.models.generate_content(
         model="gemini-2.0-flash",
-        contents=prompt
+        contents=prompt,
     )
+    script = response.text
+    if not script or not script.strip():
+        raise RuntimeError("Gemini returned an empty response.")
+    return script
 
-    return response.text
 
-
-# --------------------------------
-# Function 3: Save Script to File
-# --------------------------------
 def save_script(script):
-
-    with open(
-        "generated_script.txt",
-        "w",
-        encoding="utf-8"
-    ) as file:
-
+    with open("generated_script.txt", "w", encoding="utf-8") as file:
         file.write(script)
 
     print("✅ Script saved successfully!")
     print("📄 File Name: generated_script.txt")
 
 
-# --------------------------------
-# Main Program Starts Here
-# --------------------------------
+def choose_option(prompt, options):
+    choices = {str(index): option for index, option in enumerate(options, start=1)}
+    while True:
+        print(" / ".join(f"{key}. {value}" for key, value in choices.items()))
+        choice = input(prompt).strip()
+        if choice in choices:
+            return choices[choice]
+        print(f"Please choose a number from 1 to {len(choices)}.")
 
-# Show project banner
-banner()
 
-print("SETUP: aistudio.google.com se API key lo")
-print()
+def main():
+    banner()
+    print("Get an API key from aistudio.google.com. The key is not displayed while typing.")
+    api_key = getpass("Enter your Gemini API key: ").strip()
+    if not api_key:
+        print("❌ An API key is required.")
+        return
 
-# User enters Gemini API key
-api_key = input("Enter your Gemini API Key: ")
+    platform = choose_option("Choose platform: ", PLATFORMS)
+    topic = input("Video topic: ").strip()
+    while not topic:
+        print("Topic cannot be empty.")
+        topic = input("Video topic: ").strip()
+    tone = choose_option("Choose tone: ", TONES)
 
-# Create Gemini Client
-client = genai.Client(api_key=api_key)
+    print()
+    print("Generating script draft... 🎬")
+    print()
+    try:
+        client = genai.Client(api_key=api_key)
+        script = generate_script(client, platform, topic, tone)
+    except Exception:
+        print("❌ Script generation failed. Check your API key and network, then try again.")
+        return
 
-print()
-print("Platforms: YouTube Shorts, Instagram Reels, TikTok")
+    print("=" * 50)
+    print(script)
+    print("=" * 50)
+    save_script(script)
 
-# User Inputs
-platform = input("Platform choose karo: ")
-topic = input("Video topic kya hai: ")
-tone = input(
-    "Tone (funny/motivational/educational): "
-)
 
-print()
-print("Generating viral script... 🎬")
-print()
-
-# Generate Script
-script = generate_script(
-    client,
-    platform,
-    topic,
-    tone
-)
-
-# Display Result
-print("=" * 50)
-print(script)
-print("=" * 50)
-
-# Save Script
-save_script(script)
+if __name__ == "__main__":
+    main()
