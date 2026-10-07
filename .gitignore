@@ -1,3 +1,6 @@
 __pycache__/
 .env
+__pycache__/
+*.py[cod]
+generated_script.txt
 *.pyc

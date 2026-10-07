@@ -1,86 +1,31 @@
-# ShortsForge 🤖🎬
+# ShortsForge
 
-AI-powered Shorts Script Generator for content creators.
+A command-line demo that drafts short-form video scripts in Hinglish with Google Gemini.
 
-Generate viral-ready scripts for:
+## Features
 
-📺 YouTube Shorts
+- YouTube Shorts, Instagram Reels, and TikTok formats
+- Funny, motivational, and educational tones
+- Hook, main content, call to action, and hashtag suggestions
+- Saves the generated draft to `generated_script.txt`
 
-📱 Instagram Reels
+Generated content may be inaccurate and does not guarantee reach or virality. Review factual claims and platform requirements before publishing.
 
-🎵 TikTok
+## Setup
 
-using Google's Gemini AI.
+Requires Python 3.10 or newer.
 
----
+```sh
+python -m venv .venv
+# Windows: .venv\Scripts\activate
+# macOS/Linux: source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-## ✨ Features
+Copy `.env.example` to `.env` and set `GEMINI_API_KEY` using a key from [Google AI Studio](https://aistudio.google.com/). Keep `.env` private; Git ignores it.
 
-✅ AI Script Generation
+Run:
 
-✅ Platform-Specific Content
-
-✅ Multiple Content Tones
-
-✅ Hook Generation
-
-✅ CTA Generation
-
-✅ Smart Hashtag Suggestions
-
-✅ Hinglish Script Support
-
----
-
-## 🛠 Tech Stack
-
-🐍 Python
-
-🧠 Google Gemini AI
-
-📄 Prompt Engineering
-
----
-
-## 🚀 How It Works
-
-User Input
-↓
-Gemini AI
-↓
-Script Generation
-↓
-Viral Content Output
-
----
-
-## 📋 Example Inputs
-
-Platform:
-YouTube Shorts
-
-Topic:
-How to stay productive
-
-Tone:
-Motivational
-
----
-
-## 🎯 Future Roadmap
-
-🔊 Text-to-Speech
-
-🖼 AI Image Generation
-
-🎥 Automatic Video Compilation
-
-📊 Content Analytics
-
-🌍 Multi-language Support
-
----
-
-## 👨‍💻 Author
-
-Made by cr1ms0ncode 🚀
+```sh
+python shorts_forge.py
+```
